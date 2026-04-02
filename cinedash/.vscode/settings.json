@@ -15,4 +15,5 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "js/ts.tsdk.path": ".yarn/sdks/typescript/lib",
   "css.lint.unknownAtRules": "ignore",
+  "eslint.nodePath": ".yarn/sdks"
 }
