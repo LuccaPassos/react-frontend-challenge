@@ -35,7 +35,7 @@ export function LoginPage() {
   const onSubmit = async (data: LoginFormSchema) => {
     try {
       await login(data.email)
-
+      console.log('Login successful')
       navigate({ to: '/discover' })
     } catch (err) {
       console.error('Login failed', err)

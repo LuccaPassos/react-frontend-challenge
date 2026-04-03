@@ -130,6 +130,7 @@
   --sidebar-accent-foreground: oklch(0.987 0.002 197.1);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.56 0.021 213.5);
+  --select: oklch(51.555% 0.09014 186.749 / 0.522);
 }
 
 @layer base {
@@ -153,9 +154,12 @@ body,
 #app {
   min-height: 100%;
 }
-/*
 
 body {
+  background-color: var(--color-background);
+}
+/*
+
   margin: 0;
   color: var(--sea-ink);
   font-family: var(--font-sans);
