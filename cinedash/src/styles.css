@@ -158,6 +158,10 @@ body,
 body {
   background-color: var(--color-background);
 }
+
+button {
+  cursor: pointer;
+}
 /*
 
   margin: 0;
