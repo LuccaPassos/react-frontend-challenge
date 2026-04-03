@@ -8,9 +8,9 @@ import { Button } from './button'
 
 export default function Header() {
   return (
-    <header className="flex h-20 w-full items-center justify-between border-b border-border bg-background px-8 text-foreground sticky">
+    <header className="flex h-20 w-full items-center justify-between border-b border-border bg-[rgb(var(--background)/0.5)]  px-8 text-foreground sticky top-0 z-10 backdrop-blur-sm">
       <div className="flex items-center gap-12">
-        <div className="flex items-center px-10">
+        <div className="flex items-center">
           <Link to="/discover">
             <CineDashLogo className="w-35" />
           </Link>

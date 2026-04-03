@@ -1,6 +1,9 @@
-import { IconFilter2, IconSearch } from '@tabler/icons-react'
+import { IconFilter2, IconMovie, IconSearch } from '@tabler/icons-react'
+import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 
+import { useTrendingMovies } from '@/entities/movie/api/use-trending-movies'
 import { Button } from '@/shared/ui/button'
 import { ButtonGroup } from '@/shared/ui/button-group'
 import {
@@ -10,16 +13,48 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/ui/card'
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '@/shared/ui/empty'
 import { Field, FieldGroup, FieldLabel } from '@/shared/ui/field'
 import { Input } from '@/shared/ui/input'
 import { TextField } from '@/shared/ui/text-field'
 
 import { GenreSelector } from './genre-selector'
-import { MovieCard } from './movie-card'
+import { MovieCard, MovieCardSkeleton } from './movie-card'
 import { SliderControlled } from './rating-slider'
 
 export function Discover() {
+  const { data, isLoading, error, isError } = useTrendingMovies(1)
   const form = useForm()
+
+  useEffect(() => {
+    if (isError) {
+      console.error('Error fetching trending movies:', error)
+      toast.error('Falha ao carregar os filmes. Por favor, tente novamente.')
+    }
+  }, [isError])
+
+  if (data?.results.length === 0 || isError) {
+    return (
+      <Empty>
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <IconMovie />
+          </EmptyMedia>
+          <EmptyTitle>Nenhum filme por aqui</EmptyTitle>
+          <EmptyDescription>
+            Experimente ajustar os filtros ou procure por outro título para
+            encontrar o que deseja.
+          </EmptyDescription>
+        </EmptyHeader>
+      </Empty>
+    )
+  }
 
   return (
     <div className="p-8 grid grid-cols-5 gap-x-12">
@@ -89,13 +124,24 @@ export function Discover() {
         </h1>
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-10">
-          <MovieCard
-            id="1"
-            imageSrc="https://image.tmdb.org/t/p/w600_and_h900_face/t1DQ4XXIqTm5LvUjz8jypN43JjZ.jpg"
-            title="O Agente Secreto"
-            releaseYear={2025}
-            rating={7.3}
-          />
+          {isLoading ? (
+            <>
+              <MovieCardSkeleton />
+              <MovieCardSkeleton />
+              <MovieCardSkeleton />
+            </>
+          ) : (
+            data?.results.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                id={movie.id}
+                imageSrc={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+                title={movie.title}
+                releaseYear={new Date(movie.release_date).getFullYear()}
+                rating={movie.vote_average}
+              />
+            ))
+          )}
         </div>
       </main>
     </div>
