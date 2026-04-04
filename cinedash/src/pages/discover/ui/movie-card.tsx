@@ -1,7 +1,6 @@
-import { IconBookmark, IconMovie, IconStarFilled } from '@tabler/icons-react'
+import { IconMovie, IconStarFilled } from '@tabler/icons-react'
 import { Link } from '@tanstack/react-router'
 
-import { Button } from '@/shared/ui/button'
 import { Card } from '@/shared/ui/card'
 import { Skeleton } from '@/shared/ui/skeleton'
 
@@ -25,10 +24,6 @@ export function MovieCard({
     maximumFractionDigits: 1,
   }).format(rating)
 
-  const handleBookmarkClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-  }
-
   return (
     <div className="relative flex flex-col w-full max-w-62.5 cursor-pointer">
       <Link
@@ -44,16 +39,6 @@ export function MovieCard({
             className="absolute top-[calc(50%-48px)] left-1/2 -translate-x-1/2 -translate-y-1/2 text-foreground opacity-20"
           />
         </Card>
-
-        <Button
-          variant="secondary"
-          size="icon"
-          className="absolute top-3 right-3"
-          aria-label="Adicionar à watchlist"
-          onClick={handleBookmarkClick}
-        >
-          <IconBookmark />
-        </Button>
 
         <div className="p-2 flex flex-col gap-3">
           <div className=" flex justify-between items-start">

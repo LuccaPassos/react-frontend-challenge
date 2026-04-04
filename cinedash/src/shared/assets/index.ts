@@ -1,0 +1,1 @@
+export { default as CineDashLogo } from './cinedash-logo.svg?react'

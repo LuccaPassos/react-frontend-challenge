@@ -1,7 +1,6 @@
 import {
   IconArrowLeft,
   IconBook,
-  IconBookmark,
   IconMovie,
   IconPlayerPlay,
   IconStarFilled,
@@ -19,6 +18,8 @@ import { Card } from '@/shared/ui/card'
 import { Spinner } from '@/shared/ui/spinner'
 
 import { CastCard } from './cast-card'
+import { MovieBackdrop } from './movie-backdrop'
+import { WatchlistButton } from './toggle-watchlist-button'
 
 export function MovieDetails() {
   const { movieId } = useParams({ strict: false })
@@ -54,19 +55,7 @@ export function MovieDetails() {
 
   return (
     <div className="py-10 px-20 grid grid-cols-1 gap-y-10 gap-x-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 ">
-      <div
-        className="-my-10 -mx-20 w-full h-[80%] absolute -z-10"
-        style={{
-          backgroundImage: `
-        linear-gradient(
-          0deg, var(--background) 5%, color-mix(in srgb, var(--background), transparent 30%) 100%
-        ),
-        url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-
+      <MovieBackdrop path={movie?.backdrop_path} />
       <aside className="flex flex-col gap-6">
         {canGoBack ? (
           <Button
@@ -93,10 +82,7 @@ export function MovieDetails() {
           />
         </Card>
 
-        <Button variant="secondary" className="w-full max-w-75">
-          <IconBookmark />
-          Adicionar à Watchlist
-        </Button>
+        <WatchlistButton movieId={movieId ?? ''} />
       </aside>
 
       <main className="lg:col-start-2 lg:mt-55 col-span-full flex flex-col gap-10">

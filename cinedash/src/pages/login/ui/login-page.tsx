@@ -3,7 +3,8 @@ import { useNavigate } from '@tanstack/react-router'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-import CineDashLogo from '@/shared/assets/cinedash-logo.svg?react'
+import { useCreateGuestSession } from '@/entities/session'
+import { CineDashLogo } from '@/shared/assets'
 import { Button } from '@/shared/ui/button'
 import {
   Card,
@@ -31,11 +32,13 @@ export function LoginPage() {
   })
 
   const navigate = useNavigate()
+  const { refetch: createGuestSession } = useCreateGuestSession()
 
   const onSubmit = async (data: LoginFormSchema) => {
     try {
       await login(data.email)
-      console.log('Login successful')
+      await createGuestSession({ throwOnError: true })
+
       navigate({ to: '/discover' })
     } catch (err) {
       console.error('Login failed', err)

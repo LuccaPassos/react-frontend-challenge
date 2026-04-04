@@ -143,6 +143,10 @@
   html {
     @apply font-sans;
   }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 * {
@@ -159,9 +163,6 @@ body {
   background-color: var(--color-background);
 }
 
-button {
-  cursor: pointer;
-}
 /*
 
   margin: 0;

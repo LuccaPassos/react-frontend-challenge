@@ -1,7 +1,7 @@
 import { IconBookmark, IconNorthStar } from '@tabler/icons-react'
 import { Link } from '@tanstack/react-router'
 
-import CineDashLogo from '@/shared/assets/cinedash-logo.svg?react'
+import { CineDashLogo } from '@/shared/assets'
 
 import { Avatar, AvatarFallback, AvatarImage } from './avatar'
 import { Button } from './button'

@@ -43,6 +43,7 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-router-devtools", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.166.11"],\
           ["@tanstack/react-router-ssr-query", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.166.10"],\
           ["@tanstack/react-start", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.167.13"],\
+          ["@tanstack/react-table", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:8.21.3"],\
           ["@tanstack/router-core", "npm:1.168.7"],\
           ["@tanstack/router-plugin", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.167.9"],\
           ["@testing-library/dom", "npm:10.4.1"],\
@@ -78,7 +79,8 @@ const RAW_RUNTIME_STATE =
           ["vite-plugin-svgr", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:5.2.0"],\
           ["vite-tsconfig-paths", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:5.1.4"],\
           ["vitest", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:3.2.4"],\
-          ["zod", "npm:4.3.6"]\
+          ["zod", "npm:4.3.6"],\
+          ["zustand", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:5.0.12"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -3215,6 +3217,33 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@tanstack/react-table", [\
+      ["npm:8.21.3", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@tanstack-react-table-npm-8.21.3-7772decaaa-10c0.zip/node_modules/@tanstack/react-table/",\
+        "packageDependencies": [\
+          ["@tanstack/react-table", "npm:8.21.3"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:8.21.3", {\
+        "packageLocation": "./.yarn/__virtual__/@tanstack-react-table-virtual-47d3f9abb5/4/AppData/Local/Yarn/Berry/cache/@tanstack-react-table-npm-8.21.3-7772decaaa-10c0.zip/node_modules/@tanstack/react-table/",\
+        "packageDependencies": [\
+          ["@tanstack/react-table", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:8.21.3"],\
+          ["@tanstack/table-core", "npm:8.21.3"],\
+          ["@types/react", "npm:19.2.14"],\
+          ["@types/react-dom", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:19.2.3"],\
+          ["react", "npm:19.2.4"],\
+          ["react-dom", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:19.2.4"]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@tanstack/router-core", [\
       ["npm:1.168.7", {\
         "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@tanstack-router-core-npm-1.168.7-cc838cacdc-10c0.zip/node_modules/@tanstack/router-core/",\
@@ -3508,6 +3537,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@tanstack-store-npm-0.9.3-9647b22973-10c0.zip/node_modules/@tanstack/store/",\
         "packageDependencies": [\
           ["@tanstack/store", "npm:0.9.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/table-core", [\
+      ["npm:8.21.3", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@tanstack-table-core-npm-8.21.3-dac9d96299-10c0.zip/node_modules/@tanstack/table-core/",\
+        "packageDependencies": [\
+          ["@tanstack/table-core", "npm:8.21.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5188,6 +5226,7 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-router-devtools", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.166.11"],\
           ["@tanstack/react-router-ssr-query", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.166.10"],\
           ["@tanstack/react-start", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.167.13"],\
+          ["@tanstack/react-table", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:8.21.3"],\
           ["@tanstack/router-core", "npm:1.168.7"],\
           ["@tanstack/router-plugin", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.167.9"],\
           ["@testing-library/dom", "npm:10.4.1"],\
@@ -5223,7 +5262,8 @@ const RAW_RUNTIME_STATE =
           ["vite-plugin-svgr", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:5.2.0"],\
           ["vite-tsconfig-paths", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:5.1.4"],\
           ["vitest", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:3.2.4"],\
-          ["zod", "npm:4.3.6"]\
+          ["zod", "npm:4.3.6"],\
+          ["zustand", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:5.0.12"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -12008,6 +12048,36 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@types/zod",\
           "zod"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["zustand", [\
+      ["npm:5.0.12", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/zustand-npm-5.0.12-93e0b810d6-10c0.zip/node_modules/zustand/",\
+        "packageDependencies": [\
+          ["zustand", "npm:5.0.12"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:5.0.12", {\
+        "packageLocation": "./.yarn/__virtual__/zustand-virtual-3e0be7d07e/4/AppData/Local/Yarn/Berry/cache/zustand-npm-5.0.12-93e0b810d6-10c0.zip/node_modules/zustand/",\
+        "packageDependencies": [\
+          ["@types/immer", null],\
+          ["@types/react", "npm:19.2.14"],\
+          ["@types/use-sync-external-store", null],\
+          ["immer", null],\
+          ["react", "npm:19.2.4"],\
+          ["use-sync-external-store", null],\
+          ["zustand", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:5.0.12"]\
+        ],\
+        "packagePeers": [\
+          "@types/immer",\
+          "@types/react",\
+          "@types/use-sync-external-store",\
+          "immer",\
+          "react",\
+          "use-sync-external-store"\
         ],\
         "linkType": "HARD"\
       }]\

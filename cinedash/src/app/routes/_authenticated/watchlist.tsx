@@ -1,9 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/_authenticated/watchlist')({
-  component: RouteComponent,
-})
+import { Watchlist } from '@/pages/watchlist'
 
-function RouteComponent() {
-  return <div>Watchlist</div>
-}
+export const Route = createFileRoute('/_authenticated/watchlist')({
+  component: Watchlist,
+})

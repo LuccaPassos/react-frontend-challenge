@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
-import { queryClient } from '@/shared/api/query-client'
+import { queryClient } from '@/shared/api'
 import { Toaster } from '@/shared/ui/sonner'
 
 import appCss from '../../styles.css?url'

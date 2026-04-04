@@ -3,4 +3,5 @@ export const movieKeys = {
     details: (id: string) => [...movieKeys.all, 'detail', id] as const,
     trending: (lang: string) => [...movieKeys.all, 'trending', lang] as const,
     infinite: (lang: string) => [...movieKeys.trending(lang), 'infinite'] as const,
+    watchlist: (accountId: string) => [...movieKeys.all, 'watchlist', accountId] as const,
 };
