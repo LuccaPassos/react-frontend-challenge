@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 import { useCreateGuestSession, useSessionStore } from '@/entities/session'
+import { login } from '@/features/auth'
 import { CineDashLogo } from '@/shared/assets'
 import { Button } from '@/shared/ui/button'
 import {
@@ -18,7 +19,6 @@ import { FieldGroup } from '@/shared/ui/field'
 import { Spinner } from '@/shared/ui/spinner'
 import { TextField } from '@/shared/ui/text-field'
 
-import { login } from '../api/auth/login'
 import type { LoginFormSchema } from '../model/login-schema'
 import { loginSchema } from '../model/login-schema'
 

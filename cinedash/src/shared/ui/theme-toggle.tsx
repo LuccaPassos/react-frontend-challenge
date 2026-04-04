@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useThemeStore } from '@/shared/model/theme-store'
+import { useThemeStore } from '../model'
 
 export default function ThemeToggle() {
   const mode = useThemeStore((state) => state.mode)

@@ -3,10 +3,10 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
 import { useSessionStore } from '@/entities/session'
-import { logout } from '@/pages/login/api/auth/logout'
+import { logout } from '@/features/auth'
 import { CineDashLogo, UserAvatar } from '@/shared/assets'
-import { useThemeStore } from '@/shared/model/theme-store'
 
+import { useThemeStore } from '../model'
 import { Avatar, AvatarFallback, AvatarImage } from './avatar'
 import { Button } from './button'
 import {
