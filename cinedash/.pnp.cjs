@@ -49,6 +49,7 @@ const RAW_RUNTIME_STATE =
           ["@testing-library/dom", "npm:10.4.1"],\
           ["@testing-library/react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:16.3.2"],\
           ["@types/js-cookie", "npm:3.0.6"],\
+          ["@types/lodash.debounce", "npm:4.0.9"],\
           ["@types/node", "npm:22.19.15"],\
           ["@types/react", "npm:19.2.14"],\
           ["@types/react-dom", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:19.2.3"],\
@@ -62,6 +63,7 @@ const RAW_RUNTIME_STATE =
           ["jose", "npm:6.2.2"],\
           ["js-cookie", "npm:3.0.5"],\
           ["jsdom", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:28.1.0"],\
+          ["lodash.debounce", "npm:4.0.8"],\
           ["lucide-react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:0.545.0"],\
           ["next-themes", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:0.4.6"],\
           ["prettier", "npm:3.8.1"],\
@@ -3739,6 +3741,25 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/lodash", [\
+      ["npm:4.17.24", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@types-lodash-npm-4.17.24-4a04035060-10c0.zip/node_modules/@types/lodash/",\
+        "packageDependencies": [\
+          ["@types/lodash", "npm:4.17.24"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/lodash.debounce", [\
+      ["npm:4.0.9", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@types-lodash.debounce-npm-4.0.9-dcafdcd4bd-10c0.zip/node_modules/@types/lodash.debounce/",\
+        "packageDependencies": [\
+          ["@types/lodash", "npm:4.17.24"],\
+          ["@types/lodash.debounce", "npm:4.0.9"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/node", [\
       ["npm:22.19.15", {\
         "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@types-node-npm-22.19.15-1a3f9360f4-10c0.zip/node_modules/@types/node/",\
@@ -5232,6 +5253,7 @@ const RAW_RUNTIME_STATE =
           ["@testing-library/dom", "npm:10.4.1"],\
           ["@testing-library/react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:16.3.2"],\
           ["@types/js-cookie", "npm:3.0.6"],\
+          ["@types/lodash.debounce", "npm:4.0.9"],\
           ["@types/node", "npm:22.19.15"],\
           ["@types/react", "npm:19.2.14"],\
           ["@types/react-dom", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:19.2.3"],\
@@ -5245,6 +5267,7 @@ const RAW_RUNTIME_STATE =
           ["jose", "npm:6.2.2"],\
           ["js-cookie", "npm:3.0.5"],\
           ["jsdom", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:28.1.0"],\
+          ["lodash.debounce", "npm:4.0.8"],\
           ["lucide-react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:0.545.0"],\
           ["next-themes", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:0.4.6"],\
           ["prettier", "npm:3.8.1"],\
@@ -8437,6 +8460,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["locate-path", "npm:6.0.0"],\
           ["p-locate", "npm:5.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lodash.debounce", [\
+      ["npm:4.0.8", {\
+        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/lodash.debounce-npm-4.0.8-f1d6e09799-10c0.zip/node_modules/lodash.debounce/",\
+        "packageDependencies": [\
+          ["lodash.debounce", "npm:4.0.8"]\
         ],\
         "linkType": "HARD"\
       }]\
