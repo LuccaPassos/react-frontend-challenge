@@ -1,5 +1,6 @@
 import type { Movie } from '@/entities/movie'
 import { DataTable } from '@/shared/ui/data-table'
+import { Spinner } from '@/shared/ui/spinner'
 
 import { columns } from './columns'
 
@@ -7,10 +8,12 @@ export function WatchlistTable({
   movies,
   genres,
   loading,
+  loadingMore,
 }: {
   movies: Movie[]
   genres: Record<number, string>
-  loading: boolean
+  loading?: boolean
+  loadingMore?: boolean
 }) {
   if (loading) {
     return <DataTable columns={columns} data={[]} loading={loading} />
@@ -25,5 +28,15 @@ export function WatchlistTable({
         .sort((a, b) => a.localeCompare(b, 'pt-BR')) ?? [],
   }))
 
-  return <DataTable columns={columns} data={dataWithGenres} />
+  return (
+    <div className="space-y-3">
+      <DataTable columns={columns} data={dataWithGenres} />
+      {loadingMore ? (
+        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          <Spinner className="size-4" />
+          Carregando mais filmes...
+        </div>
+      ) : null}
+    </div>
+  )
 }

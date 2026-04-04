@@ -4,4 +4,6 @@ export const movieKeys = {
     trending: (lang: string) => [...movieKeys.all, 'trending', lang] as const,
     infinite: (lang: string) => [...movieKeys.trending(lang), 'infinite'] as const,
     watchlist: (accountId: string) => [...movieKeys.all, 'watchlist', accountId] as const,
+    watchlistInfinite: (accountId: string, lang: string) =>
+        [...movieKeys.watchlist(accountId), lang, 'infinite'] as const,
 };
