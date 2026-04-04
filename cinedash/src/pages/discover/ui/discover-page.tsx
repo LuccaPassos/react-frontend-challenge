@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-import { useInfiniteTrendingMovies } from '@/entities/movie/api/use-trending-movies'
+import { useInfiniteTrendingMovies } from '@/entities/movie'
 import { useIntersection } from '@/shared/lib/use-intersection'
 import { Button } from '@/shared/ui/button'
 import { ButtonGroup } from '@/shared/ui/button-group'
@@ -74,7 +74,7 @@ export function Discover() {
   }
 
   return (
-    <div className="p-8 grid grid-cols-5 gap-x-12">
+    <div className="py-10 px-20 grid grid-cols-5 gap-x-12">
       <aside className="flex flex-col gap-6 col-start-1">
         <Field>
           <ButtonGroup>

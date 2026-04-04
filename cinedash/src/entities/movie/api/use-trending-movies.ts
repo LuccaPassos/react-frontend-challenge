@@ -1,14 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { apiFetch } from '@/shared/api/base';
+import { apiFetch } from '@/shared/api';
 
 import type { TrendingResponse } from '../model/types';
-
-export const movieKeys = {
-  all: ['movies'] as const,
-  trending: (lang: string) => [...movieKeys.all, 'trending', lang] as const,
-  infinite: (lang: string) => [...movieKeys.trending(lang), 'infinite'] as const,
-};
+import { movieKeys } from './keys';
 
 export const useInfiniteTrendingMovies = (language = 'pt-BR') => {
   return useInfiniteQuery({

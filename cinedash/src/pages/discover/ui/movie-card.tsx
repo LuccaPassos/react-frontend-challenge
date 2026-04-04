@@ -41,7 +41,7 @@ export function MovieCard({
           <img src={imageSrc} alt={title} className="w-full aspect-2/3 z-1" />
           <IconMovie
             size={48}
-            className="absolute top-[calc(50%-48px)] left-1/2 -translate-x-1/2 -translate-y-1/2 text-foreground opacity-20  "
+            className="absolute top-[calc(50%-48px)] left-1/2 -translate-x-1/2 -translate-y-1/2 text-foreground opacity-20"
           />
         </Card>
 
