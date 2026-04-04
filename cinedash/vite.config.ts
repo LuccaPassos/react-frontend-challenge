@@ -1,3 +1,5 @@
+/// <reference types="vitest/config" />
+
 import tailwindcss from '@tailwindcss/vite'
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
@@ -20,6 +22,12 @@ const config = defineConfig({
     }),
     viteReact(),
   ],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/shared/lib/setup-tests.ts'],
+    clearMocks: true,
+  },
 })
 
 export default config
