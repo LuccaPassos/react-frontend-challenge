@@ -1,10 +1,4 @@
-import {
-  IconBookmark,
-  IconMoon,
-  IconNorthStar,
-  IconSun,
-  IconSunMoon,
-} from '@tabler/icons-react'
+import { IconBookmark, IconNorthStar, IconSunMoon } from '@tabler/icons-react'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
