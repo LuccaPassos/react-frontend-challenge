@@ -1,0 +1,1 @@
+export { MovieDetails } from './ui/movie-page'
