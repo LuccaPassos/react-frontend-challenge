@@ -1,11 +1,12 @@
-import { useState } from 'react'
-
 import { Field, FieldTitle } from '@/shared/ui/field'
 import { Slider } from '@/shared/ui/slider'
 
-export function SliderControlled() {
-  const [value, setValue] = useState<number[]>([5, 10])
+type SliderControlledProps = {
+  value: number[]
+  onChange: (value: number[]) => void
+}
 
+export function SliderControlled({ value, onChange }: SliderControlledProps) {
   const handleValueText = (v: number[]) => {
     if (v[0] === v[1]) {
       return `Igual a ${v[0]}`
@@ -24,7 +25,7 @@ export function SliderControlled() {
 
       <Slider
         value={value}
-        onValueChange={(v) => setValue(Array.isArray(v) ? v : [v])}
+        onValueChange={(v) => onChange(Array.isArray(v) ? v : [v])}
         min={0}
         max={10}
         className="mt-0.5 w-full"

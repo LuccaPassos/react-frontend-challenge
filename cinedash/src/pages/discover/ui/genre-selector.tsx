@@ -1,7 +1,6 @@
-'use client'
+import { useCallback, useMemo } from 'react'
 
-import * as React from 'react'
-
+import { useGenres } from '@/entities/movie'
 import {
   Combobox,
   ComboboxChip,
@@ -15,42 +14,65 @@ import {
   useComboboxAnchor,
 } from '@/shared/ui/combobox'
 
-const frameworks = [
-  'Next.js',
-  'SvelteKit',
-  'Nuxt.js',
-  'Remix',
-  'Astro',
-] as const
+type GenreSelectorProps = {
+  value: number[]
+  onChange: (value: number[]) => void
+}
 
-export function GenreSelector() {
+export function GenreSelector({ value, onChange }: GenreSelectorProps) {
   const anchor = useComboboxAnchor()
+  const { data: genresById, isLoading } = useGenres()
+
+  const genreItems = useMemo(
+    () =>
+      Object.entries(genresById ?? {})
+        .map(([id, name]) => ({ id: Number(id), name }))
+        .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR')),
+    [genresById],
+  )
+
+  const selectedValues = useMemo(() => value.map(String), [value])
+
+  const handleValueChange = useCallback(
+    (nextValue: string[] | string) => {
+      const normalized = Array.isArray(nextValue) ? nextValue : [nextValue]
+      onChange(
+        normalized.map((id) => Number(id)).filter((id) => Number.isInteger(id)),
+      )
+    },
+    [onChange],
+  )
 
   return (
     <Combobox
       multiple
       autoHighlight
-      items={frameworks}
-      defaultValue={[frameworks[0]]}
+      items={genreItems.map((genre) => String(genre.id))}
+      value={selectedValues}
+      onValueChange={handleValueChange}
     >
       <ComboboxChips ref={anchor} className="w-full max-w-xs">
         <ComboboxValue>
-          {(values) => (
-            <React.Fragment>
-              {values.map((value: string) => (
-                <ComboboxChip key={value}>{value}</ComboboxChip>
+          {(genreValues) => (
+            <>
+              {genreValues.map((genreValue: string) => (
+                <ComboboxChip key={genreValue}>
+                  {genresById?.[Number(genreValue)] ?? genreValue}
+                </ComboboxChip>
               ))}
               <ComboboxChipsInput />
-            </React.Fragment>
+            </>
           )}
         </ComboboxValue>
       </ComboboxChips>
       <ComboboxContent anchor={anchor}>
-        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxEmpty>
+          {isLoading ? 'Carregando gêneros...' : 'Nenhum gênero encontrado.'}
+        </ComboboxEmpty>
         <ComboboxList>
           {(item) => (
             <ComboboxItem key={item} value={item}>
-              {item}
+              {genresById?.[Number(item)] ?? item}
             </ComboboxItem>
           )}
         </ComboboxList>

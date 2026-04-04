@@ -1,19 +1,15 @@
-import { IconFilter2, IconMovie, IconSearch } from '@tabler/icons-react'
-import { useEffect } from 'react'
-import { Controller, useForm } from 'react-hook-form'
+import { IconMovie, IconSearch } from '@tabler/icons-react'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-import { useInfiniteTrendingMovies } from '@/entities/movie'
+import {
+  useInfiniteDiscoverMovies,
+  useInfiniteTrendingMovies,
+} from '@/entities/movie'
 import { useIntersection } from '@/shared/lib/use-intersection'
 import { Button } from '@/shared/ui/button'
 import { ButtonGroup } from '@/shared/ui/button-group'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/shared/ui/card'
 import {
   Empty,
   EmptyDescription,
@@ -21,40 +17,91 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/shared/ui/empty'
-import { Field, FieldGroup, FieldLabel } from '@/shared/ui/field'
+import { Field } from '@/shared/ui/field'
 import { Input } from '@/shared/ui/input'
-import { TextField } from '@/shared/ui/text-field'
 
-import { GenreSelector } from './genre-selector'
-import { MovieCard, MovieCardSkeleton } from './movie-card'
-import { SliderControlled } from './rating-slider'
+import { DiscoverFiltersCard } from './discover-filters-card'
+import { DiscoverMoviesSection } from './discover-movies-section'
+import type {
+  AppliedDiscoverFilters,
+  DiscoverFilterForm,
+} from './discover-types'
+import { buildAppliedFilters, FILTER_DEFAULT_VALUES } from './discover-types'
 
 export function Discover() {
+  const [appliedFilters, setAppliedFilters] =
+    useState<AppliedDiscoverFilters | null>(null)
+
   const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    error,
-    isLoading,
-    isError,
+    data: trendingData,
+    fetchNextPage: fetchNextTrendingPage,
+    hasNextPage: hasNextTrendingPage,
+    isFetchingNextPage: isFetchingNextTrendingPage,
+    error: trendingError,
+    isLoading: isTrendingLoading,
+    isError: isTrendingError,
   } = useInfiniteTrendingMovies()
 
-  const movies = data?.pages.flatMap((page) => page.results) ?? []
+  const hasAppliedFilters = appliedFilters !== null
 
-  const form = useForm()
+  const {
+    data: discoverData,
+    fetchNextPage: fetchNextDiscoverPage,
+    hasNextPage: hasNextDiscoverPage,
+    isFetchingNextPage: isFetchingNextDiscoverPage,
+    error: discoverError,
+    isError: isDiscoverError,
+    isLoading: isDiscoverLoading,
+  } = useInfiniteDiscoverMovies(appliedFilters, 'pt-BR', {
+    enabled: hasAppliedFilters,
+  })
+
+  const trendingMovies =
+    trendingData?.pages.flatMap((page) => page.results) ?? []
+  const discoverMovies =
+    discoverData?.pages.flatMap((page) => page.results) ?? []
+  const movies = hasAppliedFilters ? discoverMovies : trendingMovies
+  const isLoading = hasAppliedFilters ? isDiscoverLoading : isTrendingLoading
+  const isFetchingNextPage = hasAppliedFilters
+    ? isFetchingNextDiscoverPage
+    : isFetchingNextTrendingPage
+  const isError = hasAppliedFilters ? isDiscoverError : isTrendingError
+  const activeError = hasAppliedFilters ? discoverError : trendingError
+
+  const form = useForm<DiscoverFilterForm>({
+    defaultValues: FILTER_DEFAULT_VALUES,
+  })
 
   useEffect(() => {
     if (isError) {
-      console.error('Error fetching trending movies:', error)
+      console.error('Error fetching movies:', activeError)
       toast.error('Falha ao carregar os filmes. Por favor, tente novamente.')
     }
-  }, [isError])
+  }, [isError, activeError])
 
   const sentinelRef = useIntersection(
-    () => fetchNextPage(),
-    !!hasNextPage && !isFetchingNextPage,
+    () => {
+      if (hasAppliedFilters) {
+        fetchNextDiscoverPage()
+        return
+      }
+
+      fetchNextTrendingPage()
+    },
+    hasAppliedFilters
+      ? !!hasNextDiscoverPage && !isFetchingNextDiscoverPage
+      : !!hasNextTrendingPage && !isFetchingNextTrendingPage,
   )
+
+  const onSubmit = (data: DiscoverFilterForm) => {
+    const nextFilters = buildAppliedFilters(data)
+    setAppliedFilters(nextFilters)
+  }
+
+  const handleResetFilters = () => {
+    form.reset(FILTER_DEFAULT_VALUES)
+    setAppliedFilters(null)
+  }
 
   if ((!isLoading && movies.length === 0) || isError) {
     return (
@@ -87,82 +134,20 @@ export function Discover() {
 
         <div className="text-center text-sm  text-muted-foreground">OU</div>
 
-        <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <IconFilter2 size={24} />
-              Filtros
-            </CardTitle>
-          </CardHeader>
-
-          <CardContent>
-            <form onSubmit={() => {}} id="filter-form">
-              <FieldGroup>
-                <Field>
-                  <FieldLabel htmlFor="genre">Gêneros</FieldLabel>
-                  <GenreSelector />
-                </Field>
-
-                <SliderControlled />
-
-                <div className="grid grid-cols-2 gap-2">
-                  <Controller
-                    name="releaseYear"
-                    control={form.control}
-                    render={({ field, fieldState }) => (
-                      <TextField
-                        {...field}
-                        id="release-year"
-                        label="Ano de Lançamento"
-                        type="number"
-                        placeholder="Ex: 2005"
-                        min={0}
-                        error={fieldState.error}
-                      />
-                    )}
-                  />
-                </div>
-              </FieldGroup>
-            </form>
-          </CardContent>
-
-          <CardFooter className="grid grid-cols-2 gap-2">
-            <Button variant="ghost">Limpar Filtro</Button>
-            <Button type="submit" variant="default">
-              Buscar
-            </Button>
-          </CardFooter>
-        </Card>
+        <DiscoverFiltersCard
+          form={form}
+          onSubmit={onSubmit}
+          onReset={handleResetFilters}
+        />
       </aside>
 
-      <main className="flex-1 col-span-4">
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight text-balance mb-6">
-          Populares
-        </h1>
-
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-10">
-          {isLoading
-            ? Array(3)
-                .fill(0)
-                .map((_, index) => <MovieCardSkeleton key={index} />)
-            : movies.map((movie) => (
-                <MovieCard
-                  key={movie.id}
-                  id={movie.id}
-                  imageSrc={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-                  title={movie.title}
-                  releaseYear={new Date(movie.release_date).getFullYear()}
-                  rating={movie.vote_average}
-                />
-              ))}
-          {isFetchingNextPage &&
-            Array(3)
-              .fill(0)
-              .map((_, index) => <MovieCardSkeleton key={index} />)}
-        </div>
-
-        <div ref={sentinelRef} />
-      </main>
+      <DiscoverMoviesSection
+        title={hasAppliedFilters ? 'Resultados do filtro' : 'Populares'}
+        movies={movies}
+        isLoading={isLoading}
+        isFetchingNextPage={isFetchingNextPage}
+        sentinelRef={sentinelRef}
+      />
     </div>
   )
 }

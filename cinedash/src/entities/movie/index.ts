@@ -1,4 +1,6 @@
 export { movieKeys } from './api/keys'
+export { useInfiniteDiscoverMovies } from './api/use-discover-movies'
+export { useDiscoverMovies } from './api/use-discover-movies'
 export { useGenres } from './api/use-genres'
 export { useMovieAccountState } from './api/use-movie-account-state'
 export { useMovieDetails } from './api/use-movie-details'
