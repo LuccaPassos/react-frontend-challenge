@@ -3,7 +3,8 @@ import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-import { useTrendingMovies } from '@/entities/movie/api/use-trending-movies'
+import { useInfiniteTrendingMovies } from '@/entities/movie/api/use-trending-movies'
+import { useIntersection } from '@/shared/lib/use-intersection'
 import { Button } from '@/shared/ui/button'
 import { ButtonGroup } from '@/shared/ui/button-group'
 import {
@@ -22,6 +23,7 @@ import {
 } from '@/shared/ui/empty'
 import { Field, FieldGroup, FieldLabel } from '@/shared/ui/field'
 import { Input } from '@/shared/ui/input'
+import { Spinner } from '@/shared/ui/spinner'
 import { TextField } from '@/shared/ui/text-field'
 
 import { GenreSelector } from './genre-selector'
@@ -29,7 +31,18 @@ import { MovieCard, MovieCardSkeleton } from './movie-card'
 import { SliderControlled } from './rating-slider'
 
 export function Discover() {
-  const { data, isLoading, error, isError } = useTrendingMovies(1)
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    error,
+    isLoading,
+    isError,
+  } = useInfiniteTrendingMovies()
+
+  const movies = data?.pages.flatMap((page) => page.results) ?? []
+
   const form = useForm()
 
   useEffect(() => {
@@ -39,7 +52,12 @@ export function Discover() {
     }
   }, [isError])
 
-  if (data?.results.length === 0 || isError) {
+  const sentinelRef = useIntersection(
+    () => fetchNextPage(),
+    !!hasNextPage && !isFetchingNextPage,
+  )
+
+  if (movies.length === 0 || isError) {
     return (
       <Empty>
         <EmptyHeader>
@@ -131,7 +149,7 @@ export function Discover() {
               <MovieCardSkeleton />
             </>
           ) : (
-            data?.results.map((movie) => (
+            movies.map((movie) => (
               <MovieCard
                 key={movie.id}
                 id={movie.id}
@@ -143,6 +161,17 @@ export function Discover() {
             ))
           )}
         </div>
+
+        <div ref={sentinelRef} />
+
+        {isFetchingNextPage && (
+          <div className="flex items-center justify-center py-4  gap-2">
+            <Spinner data-icon="inline-start" />
+            <p className="text-md text-muted-foreground">
+              Carregando mais filmes...
+            </p>
+          </div>
+        )}
       </main>
     </div>
   )
