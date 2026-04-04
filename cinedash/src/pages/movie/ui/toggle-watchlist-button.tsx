@@ -36,7 +36,7 @@ export function WatchlistButton({ movieId }: WatchlistButtonProps) {
     <Button
       variant="secondary"
       className="w-full max-w-75"
-      aria-label="Adicionar à watchlist"
+      aria-label="Adicionar ou Remover da Watchlist"
       onClick={handleToggle}
       disabled={isLoading}
     >
