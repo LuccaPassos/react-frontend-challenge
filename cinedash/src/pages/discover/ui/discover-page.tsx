@@ -23,7 +23,6 @@ import {
 } from '@/shared/ui/empty'
 import { Field, FieldGroup, FieldLabel } from '@/shared/ui/field'
 import { Input } from '@/shared/ui/input'
-import { Spinner } from '@/shared/ui/spinner'
 import { TextField } from '@/shared/ui/text-field'
 
 import { GenreSelector } from './genre-selector'
@@ -57,7 +56,7 @@ export function Discover() {
     !!hasNextPage && !isFetchingNextPage,
   )
 
-  if (movies.length === 0 || isError) {
+  if ((!isLoading && movies.length === 0) || isError) {
     return (
       <Empty>
         <EmptyHeader>
@@ -142,36 +141,27 @@ export function Discover() {
         </h1>
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-10">
-          {isLoading ? (
-            <>
-              <MovieCardSkeleton />
-              <MovieCardSkeleton />
-              <MovieCardSkeleton />
-            </>
-          ) : (
-            movies.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                id={movie.id}
-                imageSrc={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-                title={movie.title}
-                releaseYear={new Date(movie.release_date).getFullYear()}
-                rating={movie.vote_average}
-              />
-            ))
-          )}
+          {isLoading
+            ? Array(3)
+                .fill(0)
+                .map((_, index) => <MovieCardSkeleton key={index} />)
+            : movies.map((movie) => (
+                <MovieCard
+                  key={movie.id}
+                  id={movie.id}
+                  imageSrc={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+                  title={movie.title}
+                  releaseYear={new Date(movie.release_date).getFullYear()}
+                  rating={movie.vote_average}
+                />
+              ))}
+          {isFetchingNextPage &&
+            Array(3)
+              .fill(0)
+              .map((_, index) => <MovieCardSkeleton key={index} />)}
         </div>
 
         <div ref={sentinelRef} />
-
-        {isFetchingNextPage && (
-          <div className="flex items-center justify-center py-4  gap-2">
-            <Spinner data-icon="inline-start" />
-            <p className="text-md text-muted-foreground">
-              Carregando mais filmes...
-            </p>
-          </div>
-        )}
       </main>
     </div>
   )
