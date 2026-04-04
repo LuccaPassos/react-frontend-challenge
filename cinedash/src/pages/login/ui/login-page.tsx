@@ -3,7 +3,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-import { useCreateGuestSession } from '@/entities/session'
+import { useCreateGuestSession, useSessionStore } from '@/entities/session'
 import { CineDashLogo } from '@/shared/assets'
 import { Button } from '@/shared/ui/button'
 import {
@@ -33,16 +33,19 @@ export function LoginPage() {
 
   const navigate = useNavigate()
   const { refetch: createGuestSession } = useCreateGuestSession()
+  const setUser = useSessionStore((state) => state.setUser)
 
   const onSubmit = async (data: LoginFormSchema) => {
     try {
-      await login(data.email)
+      const user = await login(data.email, data.password)
       await createGuestSession({ throwOnError: true })
-
+      setUser(user)
       navigate({ to: '/discover' })
     } catch (err) {
       console.error('Login failed', err)
-      toast.error('Falha no login. Por favor, tente novamente.')
+      if (err instanceof Error) {
+        toast.error(`Falha no login. ${err.message}`)
+      }
     }
   }
 

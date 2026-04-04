@@ -2,8 +2,9 @@ import { IconBookmark, IconNorthStar, IconSunMoon } from '@tabler/icons-react'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
+import { useSessionStore } from '@/entities/session'
 import { logout } from '@/pages/login/api/auth/logout'
-import { CineDashLogo } from '@/shared/assets'
+import { CineDashLogo, UserAvatar } from '@/shared/assets'
 import { useThemeStore } from '@/shared/model/theme-store'
 
 import { Avatar, AvatarFallback, AvatarImage } from './avatar'
@@ -18,6 +19,7 @@ import {
 
 export default function Header() {
   const navigate = useNavigate()
+  const user = useSessionStore((state) => state.user)
   const hydrateTheme = useThemeStore((state) => state.hydrate)
   const toggleTheme = useThemeStore((state) => state.toggleMode)
 
@@ -62,10 +64,8 @@ export default function Header() {
 
       <div className="flex items-center gap-4">
         <div className="flex flex-col items-end leading-none">
-          <span className="text-sm font-bold ">Lucca Covre</span>
-          <span className="text-xs text-muted-foreground">
-            lucca.covre@exemplo.com
-          </span>
+          <span className="text-sm font-bold ">{user?.name}</span>
+          <span className="text-xs text-muted-foreground">{user?.email}</span>
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger
@@ -76,10 +76,7 @@ export default function Header() {
                 className="rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
               >
                 <Avatar className="h-10 w-10 ring-2 ring-border ring-offset-2 ring-offset-background">
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="User Profile"
-                  />
+                  <AvatarImage src={UserAvatar} alt="User Profile" />
                   <AvatarFallback className="bg-primary text-primary-foreground">
                     LC
                   </AvatarFallback>

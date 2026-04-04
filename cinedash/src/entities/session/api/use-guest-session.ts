@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
 
 import { apiFetch } from '@/shared/api';
 
@@ -30,10 +29,6 @@ export const useCreateGuestSession = () => {
       const data = await apiFetch<GuestSessionResponse>('/authentication/guest_session/new');
 
       setSession(data.guest_session_id, data.expires_at);
-
-      Cookies.set('guest_session_id', data.guest_session_id, {
-        expires: new Date(data.expires_at.replace(' UTC', ''))
-      });
 
       return data;
     },

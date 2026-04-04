@@ -48,7 +48,6 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/router-plugin", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.167.9"],\
           ["@testing-library/dom", "npm:10.4.1"],\
           ["@testing-library/react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:16.3.2"],\
-          ["@types/js-cookie", "npm:3.0.6"],\
           ["@types/lodash.debounce", "npm:4.0.9"],\
           ["@types/node", "npm:22.19.15"],\
           ["@types/react", "npm:19.2.14"],\
@@ -60,8 +59,6 @@ const RAW_RUNTIME_STATE =
           ["eslint", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:10.1.0"],\
           ["eslint-plugin-react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:7.37.5"],\
           ["eslint-plugin-simple-import-sort", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:12.1.1"],\
-          ["jose", "npm:6.2.2"],\
-          ["js-cookie", "npm:3.0.5"],\
           ["jsdom", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:28.1.0"],\
           ["lodash.debounce", "npm:4.0.8"],\
           ["lucide-react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:0.545.0"],\
@@ -3723,15 +3720,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@types/js-cookie", [\
-      ["npm:3.0.6", {\
-        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@types-js-cookie-npm-3.0.6-c9126e5b48-10c0.zip/node_modules/@types/js-cookie/",\
-        "packageDependencies": [\
-          ["@types/js-cookie", "npm:3.0.6"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["@types/json-schema", [\
       ["npm:7.0.15", {\
         "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/@types-json-schema-npm-7.0.15-fd16381786-10c0.zip/node_modules/@types/json-schema/",\
@@ -5252,7 +5240,6 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/router-plugin", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:1.167.9"],\
           ["@testing-library/dom", "npm:10.4.1"],\
           ["@testing-library/react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:16.3.2"],\
-          ["@types/js-cookie", "npm:3.0.6"],\
           ["@types/lodash.debounce", "npm:4.0.9"],\
           ["@types/node", "npm:22.19.15"],\
           ["@types/react", "npm:19.2.14"],\
@@ -5264,8 +5251,6 @@ const RAW_RUNTIME_STATE =
           ["eslint", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:10.1.0"],\
           ["eslint-plugin-react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:7.37.5"],\
           ["eslint-plugin-simple-import-sort", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:12.1.1"],\
-          ["jose", "npm:6.2.2"],\
-          ["js-cookie", "npm:3.0.5"],\
           ["jsdom", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:28.1.0"],\
           ["lodash.debounce", "npm:4.0.8"],\
           ["lucide-react", "virtual:7d5cb3230b39fd3072143724ccb6f3c5e1eeacd5b7e70fd08580a57d95985852a85e98d1a6fc37862c0e6dfb5bfd9a65667283531c8e344841cf0419fa82d8c5#npm:0.545.0"],\
@@ -8101,15 +8086,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/jose-npm-6.2.2-ef66087bea-10c0.zip/node_modules/jose/",\
         "packageDependencies": [\
           ["jose", "npm:6.2.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["js-cookie", [\
-      ["npm:3.0.5", {\
-        "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/js-cookie-npm-3.0.5-8fc8fcc9b4-10c0.zip/node_modules/js-cookie/",\
-        "packageDependencies": [\
-          ["js-cookie", "npm:3.0.5"]\
         ],\
         "linkType": "HARD"\
       }]\
